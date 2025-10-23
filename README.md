@@ -1,315 +1,235 @@
-# Terminal
-
-**Demo: https://panr.github.io/hugo-theme-terminal-demo/**
-
+---
+layout: home
+title: Jekyll Gitbook Theme
+permalink: /
 ---
 
-⚠️ The theme needs at least Hugo **Extended** v0.90.x.
+Make Jelly site have a GitBook look!
 
+## Demo
+
+Live demo on Github Pages: [https://sighingnow.github.io/jekyll-gitbook](https://sighingnow.github.io/jekyll-gitbook)
+
+[![Jekyll Themes](https://img.shields.io/badge/featured%20on-JekyllThemes-red.svg)](https://jekyll-themes.com/jekyll-gitbook/)
+
+## Why Jekyll with GitBook
+
+GitBook is an amazing frontend style to present and organize contents (such as book chapters
+and blogs) on Web. The typical to deploy GitBook at [Github Pages][1]
+is building HTML files locally and then push to Github repository, usually to the `gh-pages`
+branch. It's quite annoying to repeat such workload and make it hard for people do version
+control via git for when there are generated HTML files to be staged in and out.
+
+This theme takes style definition out of generated GitBook site and provided the template
+for Jekyll to rendering markdown documents to HTML, thus the whole site can be deployed
+to [Github Pages][1] without generating and uploading HTML bundle every time when there are
+changes to the original repo.
+
+## How to Get Started
+
+This theme can be used just as other [Jekyll themes][1] and support [remote theme][12],
+see [the official guide][13] as well.
+
+You can introduce this jekyll theme into your own site by either
+
+- [Fork][3] this repository and add your markdown posts to the `_posts` folder.
+- Use as a remote theme in your [`_config.yml`][14](just like what we do for this
+  site itself),
+
+```yaml
+remote_theme: sighingnow/jekyll-gitbook
+```
+
+### Deploy Locally with Jekyll Serve
+
+This theme can be ran locally using Ruby and Gemfiles.
+
+[Testing your GitHub Pages site locally with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll) - GitHub
+
+## Full-text search
+
+The search functionality in jekyll-gitbook theme is powered by the [gitbook-plugin-search-pro][5] plugin and is enabled by default.
+
+[https://sighingnow.github.io/jekyll-gitbook/?q=generated](https://sighingnow.github.io/jekyll-gitbook/?q=generated)
+
+## Code highlight
+
+The code highlight style is configurable the following entry in `_config.yaml`:
+
+```yaml
+syntax_highlighter_style: colorful
+```
+
+The default code highlight style is `colorful`, the full supported styles can be found from [the rouge repository][6]. Customized
+style can be added to [./assets/gitbook/rouge/](./assets/gitbook/rouge/).
+
+## How to generate TOC
+
+The jekyll-gitbook theme leverages [jekyll-toc][4] to generate the *Contents* for the page.
+The TOC feature is not enabled by default. To use the TOC feature, modify the TOC
+configuration in `_config.yml`:
+
+```yaml
+toc:
+    enabled: true
+    h_min: 1
+    h_max: 3
+```
+
+## Google Analytics, etc.
+
+The jekyll-gitboook theme supports embedding the [Google Analytics][7], [CNZZ][8] and [Application Insights][9] website analytical tools with the following
+minimal configuration in `_config.yaml`:
+
+```yaml
+tracker:
+  google_analytics: "<YOUR GOOGLE ANALYTICS KEY, e.g, UA-xxxxxx-x>"
+```
+
+Similarly, CNZZ can be added with the following configuration in `_config.yaml`
+
+```yaml
+tracker:
+  cnzz: "<YOUR CNZZ ANALYTICS KEY, e.g., xxxxxxxx>"
+```
+
+Application Insights can be added with the following configuration in `_config.yaml`
+
+```yaml
+tracker:
+  application_insights: "<YOUR APPLICATION INSIGHTS CONNECTION STRING>"
+```
+
+## Disqus comments
+
+[Disqus](https://disqus.com/) comments can be enabled by adding the following configuration in `_config.yaml`:
+
+```yaml
+disqushandler: "<YOUR DISQUS SHORTNAME>"
+```
+
+## Jekyll collections
+
+Jekyll's [collections][15] is supported to organize the pages in a more fine-grained manner, e.g.,
+
+```yaml
+collections:
+  pages:
+    output: true
+    sort_by: date
+    permalink: /:collection/:year-:month-:day-:title:output_ext
+  others:
+    output: true
+    sort_by: date
+    permalink: /:collection/:year-:month-:day-:title:output_ext
+```
+
+An optional `ordered_collections` key can be added to `_config.yaml` to control the order of collections in the sidebar:
+
+```yaml
+ordered_collections:
+  - posts
+  - pages
+  - others
+```
+
+If not specified, the order of collections would be decided by Jekyll. Note that the key `posts` is a special collection
+that indicates the `_posts` pages of Jekyll.
+
+## Extra StyleSheet or Javascript elements
+
+You can add extra CSS or JavaScript references using configuration collections:
+
+- extra_css: for additional style sheets. If the url does not start by http, the path must be relative to the root of the site, without a starting `/`.
+- extra_header_js: for additional scripts to be included in the `<head>` tag, after the `extra_css` has been added. If the url does not start by http, the path must be relative to the root of the site, without a starting `/`.
+- extra_footer_js: for additional scripts to be included at the end of the HTML document, just before the site tracking script. If the url does not start by http, the path must be relative to the root of the site, without a starting `/`.
+
+## Customizing font settings
+
+The fonts can be customized by modifying the `.book.font-family-0` and `.book.font-family-1` entry in [`./assets/gitbook/custom.css`][10],
+
+```css
+.book.font-family-0 {
+    font-family: Georgia, serif;
+}
+.book.font-family-1 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+```
+
+## Tips, Warnings and Dangers blocks
+
+The jekyll-gitbook theme supports customized kramdown attributes (`{: .block-tip }`, `{: .block-warning }`,
+`{: .block-danger }`) like that displayed in [the discord.js website][11]. The marker can be used like
+
+```markdown
+> ##### TIP
+>
+> This guide is last tested with @napi-rs/canvas^0.1.20, so make sure you have
+> this or a similar version after installation.
+{: .block-tip }
+```
+
+Rendered page can be previewed from
+
+[https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-06-30-tips_warnings_dangers.html](https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-06-30-tips_warnings_dangers.html)
+
+## Cover image inside pages
+
+The jekyll-gitbook theme supports adding a cover image to a specific page by adding
+a `cover` field to the page metadata:
+
+```diff
+  ---
+  title: Page with cover image
+  author: Tao He
+  date: 2022-05-24
+  category: Jekyll
+  layout: post
++ cover: /assets/jekyll-gitbook/dinosaur.gif
+  ---
+```
+
+The effect can be previewed from
+
+[https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-05-24-page_cover.html](https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-05-24-page_cover.html)
+
+## Diagrams with mermaid.js
+
+This jekyll-theme supports [mermaid.js](https://mermaid.js.org/) to render diagrams
+in markdown.
+
+To enable the mermaid support, you need to set `mermaid: true` in the front matter
+of your post.
+
+```markdown
 ---
-
-- [Features](#features)
-- [Built-in shortcodes](#built-in-shortcodes)
-- [Code highlighting](#code-highlighting)
-- [How to start](#how-to-start)
-- [How to run your site](#how-to-run-your-site)
-- [How to configure](#how-to-configure)
-- [Post archetype](#post-archetype)
-- [Add-ons](#add-ons)
-- [How to edit the theme](#how-to-edit)
-- [Found a bug?](#bug)
-- [New cool idea or feature](#feature)
-- [Support](#support)
-- [License](#license)
-
-## Features
-
-- fully customizable color schemes generated by [**Terminal.css**](https://panr.github.io/terminal-css/).
-- [**Fira Code**](https://github.com/tonsky/FiraCode) as default monospaced font. It's gorgeous!
-- **really nice duotone**, custom syntax highlighting based on [**Chroma**](https://github.com/alecthomas/chroma) (fast, built-in Hugo syntax highlighter)
-- fully responsive
-- fully based on Hugo ecosystem (Pipes and Modules)
-
-#### Built-in shortcodes
-
-- **`image`** (props required: **`src`**; props optional: **`alt`**, **`position`** (**left** is default | center | right), **`style`**)
-  - e.g.
-  ```go
-  {{< image src="/img/hello.png" alt="Hello Friend" position="center" style="border-radius: 8px;" >}}
-  ```
-- **`code`** (props required: **`language`**; props optional: **`title`**, **`open`**)
-  - e.g.
-  ```go
-  {{< code language="css" title="Really cool snippet" open="true" >}}
-  pre {
-    background: #1a1a1d;
-    padding: 20px;
-    border-radius: 8px;
-    font-size: 1rem;
-    overflow: auto;
-
-    @media (--phone) {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    code {
-      background: none !important;
-      color: #ccc;
-      padding: 0;
-      font-size: inherit;
-    }
-  }
-  {{< /code >}}
-  ```
-
-#### Code highlighting
-
-A custom syntax highlighting based on Chroma. All you need to do is to wrap you code like this:
-
-````
-```html
-  // your code here
-```
-````
-
-You can find more here in the official Hugo [documentation](https://gohugo.io/content-management/syntax-highlighting/).
-
-**Supported languages**: https://github.com/alecthomas/chroma?tab=readme-ov-file#supported-languages
-
-## How to start
-
-You can download the theme manually by going to [https://github.com/panr/hugo-theme-terminal.git](https://github.com/panr/hugo-theme-terminal.git) and pasting it to `themes/terminal` in your root directory.
-
-You can also choose **one of the 3 possibilities** to install the theme:
-
-1. as Hugo Module
-2. as a standalone local directory
-3. as a git submodule
-
-⚠️ The theme needs at least Hugo **Extended** v0.90.x.
-
-### Install theme as Hugo Module
-
-```bash
-# If this is the first time you're using Hugo Modules
-# in your project. You have to initiate your own module before
-# you fetch the theme module.
-#
-# hugo mod init [your website/module name]
-hugo mod get github.com/panr/hugo-theme-terminal/v4
+mermaid: true
+---
 ```
 
-and in your config file add:
+The example can be previewed from
 
-```toml
-[module]
-  # this is needed when you fetch the theme as a submodule to your repo.
-  # replacements = "github.com/panr/hugo-theme-terminal/4 -> themes/terminal"
-[[module.imports]]
-  path = 'github.com/panr/hugo-theme-terminal/v4'
-```
-
-Keep in mind that the theme by default won't show up in the `themes` directory. This means that you are using the theme as it was on the repository at the moment you fetched it. Your local `go.sum` file keeps all the references. Read more about Hugo Modules in the [official documentation](https://gohugo.io/hugo-modules/).
-
-### Install theme locally
-
-```bash
-git clone https://github.com/panr/hugo-theme-terminal.git themes/terminal
-```
-
-This will clone the repository directly to the `themes/terminal` directory.
-
-### Install theme as a submodule
-
-```bash
-git submodule add -f https://github.com/panr/hugo-theme-terminal.git themes/terminal
-```
-
-This will install the repository as a submodule in the `themes/terminal` directory.
-
-⚠️ If you encounter any issues with:
-
-```bash
-Error: module "terminal" not found; either add it as a Hugo Module or store it in "[...your custom path]/themes".: module does not exist
-```
-
-then please try to remove `theme = "terminal"` from your config file.
-
-## How to run your site
-
-```bash
-hugo server -t terminal
-```
-
-and go to `localhost:1313` in your browser. From now on all the changes you make will go live, so you don't need to refresh your browser every single time.
-
-## How to configure
-
-The theme doesn't require any advanced configuration. Just copy:
-
-```toml
-baseurl = "/"
-languageCode = "en-us"
-# Add it only if you keep the theme in the `themes` directory.
-# Remove it if you use the theme as a remote Hugo Module.
-theme = "terminal"
-pagination.pagerSize = 5
-
-# Required for Chroma and the custom syntax highlighting.
-[markup.highlight]
-  noClasses = false
-
-[params]
-  # dir name of your main content (default is `content/posts`).
-  # the list of set content will show up on your index page (baseurl).
-  contentTypeName = "posts"
-
-  # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 2
-
-  # show selector to switch language
-  showLanguageSelector = false
-
-  # set theme to full screen width
-  fullWidthTheme = false
-
-  # center theme with default width
-  centerTheme = false
-
-  # if your resource directory contains an image called `cover.(jpg|png|webp)`,
-  # then the file will be used as a cover automatically.
-  # With this option you don't have to put the `cover` param in a front-matter.
-  autoCover = true
-
-  # set post to show the last updated
-  # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
-  showLastUpdated = false
-
-  # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
-  # updatedDatePrefix = "Updated"
-
-  # whether to show a page's estimated reading time
-  # readingTime = false # default
-
-  # whether to show a table of contents
-  # can be overridden in a page's front-matter
-  # Toc = false # default
-
-  # set title for the table of contents
-  # can be overridden in a page's front-matter
-  # TocTitle = "Table of Contents" # default
-
-  # Set date/time format for posts
-  # This will impact the date/time displayed on
-  # index.html, the posts list page, and on posts themselves
-  # This value can also be configured per-post on front matter
-  # If you have any issues with the timezone rendering differently
-  # than you expected, please ensure your timezone is correctly set
-  # on your server.
-  # This value can be customized according to Hugo documentation:
-  # https://gohugo.io/functions/time/format/
-  # Default value (no changes needed):
-  # dateFormat = "2006-01-02"
-  # Example format, with date, time, and timezone abbreviation:
-  # dateFormat = "2006-01-02 3:04:06 PM MST"
-
-
-[params.twitter]
-  # set Twitter handles for Twitter cards
-  # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
-  # do not include @
-  creator = ""
-  site = ""
-
-[languages]
-  [languages.en]
-    languageName = "English"
-    title = "Terminal"
-
-    [languages.en.params]
-      subtitle = "A simple, retro theme for Hugo"
-      owner = ""
-      keywords = ""
-      copyright = ""
-      menuMore = "Show more"
-      readMore = "Read more"
-      readOtherPosts = "Read other posts"
-      newerPosts = "Newer posts"
-      olderPosts = "Older posts"
-      missingContentMessage = "Page not found..."
-      missingBackButtonLabel = "Back to home page"
-      minuteReadingTime = "min read"
-      words = "words"
-
-      [languages.en.params.logo]
-        logoText = "Terminal"
-        logoHomeLink = "/"
-
-      [languages.en.menu]
-        [[languages.en.menu.main]]
-          identifier = "about"
-          name = "About"
-          url = "/about"
-        [[languages.en.menu.main]]
-          identifier = "showcase"
-          name = "Showcase"
-          url = "/showcase"
-
-[module]
-  # In case you would like to make changes to the theme and keep it locally in you repository,
-  # uncomment the line below (and correct the local path if necessary).
-  # --
-  # replacements = "github.com/panr/hugo-theme-terminal/v4 -> themes/terminal"
-[[module.imports]]
-  path = 'github.com/panr/hugo-theme-terminal/v4'
-```
-
-**NOTE:** Please keep in mind that currently `main menu` doesn't support nesting.
-
-## Post archetype
-
-See the default `post` file params supported by the theme — https://github.com/panr/hugo-theme-terminal/blob/master/archetypes/posts.md
-
-## Add-ons
-
-- **Comments** — for adding comments to your blog posts please take a look at `layouts/partials/comments.html` https://github.com/panr/hugo-theme-terminal/blob/master/layouts/partials/comments.html.
-- **Extended Head** — please take a look at `layouts/partials/extended_head.html` https://github.com/panr/hugo-theme-terminal/blob/master/layouts/partials/extended_head.html
-- **Extended Footer** — please take a look at `layouts/partials/extended_footer.html` https://github.com/panr/hugo-theme-terminal/blob/master/layouts/partials/extended_footer.html
-
-## How to edit the theme <a id="how-to-edit" />
-
-If you are using as a remote Hugo Module (you don't have the theme files in the `theme/terminal`) and you have to override only some of the styles, you can do this easily by adding `static/style.css` in your root directory and point things you want to change.
-
-If you have the theme files in the theme directory, then you can directly edit anything in the theme, you just have to go to `themes/terminal` and modify the files. No compilation step needed.
-
-## Found a bug? <a id="bug" />
-
-If you spot any bugs, please use [Issue Tracker](https://github.com/panr/hugo-theme-terminal/issues) or create a new [Pull Request](https://github.com/panr/hugo-theme-terminal/pulls) to fix the issue.
-
-## New cool idea or feature? <a id="feature" />
-
-The theme is in constant development since 2019 and has got many cool features that helped many of you and made the theme better. But there were also many features that I wasn't sure about because I want to keep the theme as simple as possible.
-
-So, let's say you have an idea of how to extend the theme. That's cool and you're welcome to do that, just follow these steps:
-
-- fork the theme
-- implement the feature
-- write an instruction how to use the feature
-- give a working example of the implementation for other users
-- add info about your work to `COMMUNITY-FEATURES.md`
-- make a PR with edited `COMMUNITY-FEATURES.md`
-
-This will help keeping the theme close to its roots, and also allow anyone who wishes to improve it and match their needs, to do whatever they want.
-
-Sounds OK? Cool, let's rock! 🤘
-
-## Support
-
-If you like what I'm doing and want to support my work. You can do it [here](https://ko-fi.com/pan_r). Thank you! ♥️
+[https://sighingnow.github.io/jekyll-gitbook/jekyll/2023-08-31-mermaid.html](https://sighingnow.github.io/jekyll-gitbook/jekyll/2023-08-31-mermaid.html)
 
 ## License
 
-Copyright © 2019-2025 Radek Kozieł ([@panr](https://rkoziel.com/))
+This work is open sourced under the Apache License, Version 2.0.
 
-The theme is released under the MIT License. Check the [original theme license](https://github.com/panr/hugo-theme-terminal/blob/master/LICENSE.md) for additional licensing information.
+Copyright 2019 Tao He.
+
+[1]: https://pages.github.com
+[2]: https://pages.github.com/themes
+[3]: https://github.com/sighingnow/jekyll-gitbook/fork
+[4]: https://github.com/allejo/jekyll-toc
+[5]: https://github.com/gitbook-plugins/gitbook-plugin-search-pro
+[6]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
+[7]: https://analytics.google.com/analytics/web/
+[8]: https://www.cnzz.com/
+[9]: https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
+[10]: https://github.com/sighingnow/jekyll-gitbook/blob/master/gitbook/custom.css
+[11]: https://discordjs.guide/popular-topics/canvas.html#setting-up-napi-rs-canvas
+[12]: https://rubygems.org/gems/jekyll-remote-theme
+[13]: https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
+[14]: https://github.com/sighingnow/jekyll-gitbook/blob/master/_config.yml
+[15]: https://jekyllrb.com/docs/collections/
