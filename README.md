@@ -2,10 +2,6 @@
 
 **Demo: https://panr.github.io/hugo-theme-terminal-demo/**
 
-**Create your own color scheme: https://panr.github.io/terminal-css/**
-
-![Terminal](https://github.com/panr/hugo-theme-terminal/blob/master/images/terminal-theme.png?raw=true)
-
 ---
 
 ⚠️ The theme needs at least Hugo **Extended** v0.90.x.
