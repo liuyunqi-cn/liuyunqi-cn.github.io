@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  /* 设置头部样式 */
+    height: 80px;
+}
+
+main {
+  flex-grow: 1;
+  max-height: calc(100vh - 60px); /* 考虑底部高度 */
+  overflow-y: auto;
+}
+
+main {
+  /* 设置主要内容区域样式 */
+    padding: 20px;
+}
+
+footer {
+/* 设置底部样式 */
+height: 60px;
+background-color: #f5f5f5;
+text-align: center;
+padding: 20px;
+flex: 0 0 auto
+}
