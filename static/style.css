@@ -15,7 +15,7 @@ html, body {
 ::-webkit-scrollbar {
     width: 5px;
     /* height: 5px; */
-    background-color: #F5F5F5;
+    background-color: #ffffff;
 }
 
 
@@ -32,8 +32,8 @@ html, body {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: #555;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+    background-color: #000000;
 }
 #main .aplayer{
     margin: 10px 0!important;
@@ -63,24 +63,6 @@ h4 {
     color: black;
 }
 
-/* 视频背景 */
-.kz-video {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.kz-video video {
-    min-width: 100%;
-    min-height: 100%;
-    background-size: cover;
-    width: auto;
-    height: auto;
-}
-
 .card {
     border: none;
     padding: 50px 30px 0px;
@@ -94,7 +76,7 @@ h4 {
 }
 
 .my-card {
-    /* box-shadow: 0px 5px 15px 5px rgb(203, 221, 232); */
+    box-shadow: 0px 5px 15px 5px rgb(203, 221, 232); 
 }
 
 strike {
@@ -162,7 +144,6 @@ strike {
 }
 
 .photo-bg {
-    /* background-image: url(assets/background.jpg); */
     background-image: url(https://pic1.imgdb.cn/item/6903e5bc3203f7be00b5bcd1.jpg);
     background-position: center;
     background-repeat: no-repeat;
@@ -170,7 +151,7 @@ strike {
 }
 
 footer p {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 #kaygb-blog-a,
