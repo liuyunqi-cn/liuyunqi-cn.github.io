@@ -1,8 +1,4 @@
-# KZHomePage
-
-二次元卡片个人网站主页
-
-> QQ交流群：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=-tso4BmPVXPSgqNjPhRCIg4GYZ8Llu_e&jump_from=webapi">962303102</a>
+# 云起的主页
 
 ## 使用文档
 
